@@ -1,25 +1,42 @@
 :root {
-  /* Clean, vibrant light theme colors */
-  --bg-color: #f8fafc;
-  --text-color: #0f172a;
-  --accent-color: #2563eb;
-  --accent-glow: rgba(37, 99, 235, 0.3);
-  --card-bg: #ffffff;
-  --border-color: #e2e8f0;
-  --text-muted: #475569;
-  
-  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --bg-deep: #050510;
+  --bg-surface: #0a0a18;
+  --bg-elevated: rgba(12, 14, 28, 0.72);
+
+  --glass-bg: rgba(255, 255, 255, 0.04);
+  --glass-border: rgba(0, 240, 255, 0.12);
+  --glass-blur: 20px;
+
+  --text-primary: #f0f4ff;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+
+  --neon-cyan: #00f0ff;
+  --neon-cyan-glow: rgba(0, 240, 255, 0.35);
+  --neon-purple: #a855f7;
+  --neon-purple-glow: rgba(168, 85, 247, 0.35);
+  --neon-magenta: #ec4899;
+  --neon-magenta-glow: rgba(236, 72, 153, 0.3);
+
+  --gradient-primary: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+  --gradient-text: linear-gradient(90deg, #fff 0%, var(--neon-cyan) 50%, var(--neon-purple) 100%);
+
+  --font-sans: 'Outfit', system-ui, sans-serif;
+  --font-display: 'Syne', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --section-pad: clamp(4rem, 10vw, 7rem);
+  --container: min(1200px, 92vw);
+
+  font-family: var(--font-sans);
   line-height: 1.6;
   font-weight: 400;
-
-  color-scheme: light;
-  color: var(--text-color);
-  background-color: var(--bg-color);
-
+  color-scheme: dark;
+  color: var(--text-primary);
+  background-color: var(--bg-deep);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 * {
@@ -32,100 +49,69 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Modern Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 10px;
-}
-::-webkit-scrollbar-track {
-  background: var(--bg-color);
-}
-::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 8px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: var(--accent-color);
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 body {
   margin: 0;
   min-height: 100vh;
   overflow-x: hidden;
-  /* Enhanced subtle dotted grid background */
-  background-color: #fdfdfd;
-  background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
-  background-size: 24px 24px;
+  background: var(--bg-deep);
 }
 
-h1, h2, h3, h4, h5, h6 {
-  line-height: 1.2;
+@media (pointer: fine) {
+  body, a, button, input, textarea {
+    cursor: none;
+  }
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  line-height: 1.15;
   font-weight: 700;
-  color: var(--text-color);
 }
 
 a {
-  font-weight: 500;
-  color: var(--accent-color);
-  text-decoration: inherit;
-  transition: color 0.25s, text-shadow 0.25s;
+  color: var(--neon-cyan);
+  text-decoration: none;
 }
-a:hover {
-  color: #1d4ed8;
-  text-shadow: 0 0 15px var(--accent-glow);
+
+img {
+  max-width: 100%;
+  display: block;
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
   font-family: inherit;
-  background-color: var(--card-bg);
-  color: var(--text-color);
-  cursor: pointer;
-  transition: all 0.25s;
-}
-button:hover {
-  border-color: var(--accent-color);
-  box-shadow: 0 4px 14px 0 var(--accent-glow);
-  transform: translateY(-2px);
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  border: none;
+  background: none;
 }
 
-/* Common Layout Utilities */
-.container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 2rem;
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-deep);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 240, 255, 0.25);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--neon-cyan);
 }
 
-.section {
-  padding: 5rem 0;
-}
-
-.section-title {
-  font-size: 2.5rem;
-  margin-bottom: 3rem;
-  text-align: center;
-  position: relative;
-  /* Modern Gradient Text */
-  background: linear-gradient(135deg, var(--text-color), var(--accent-color));
+.text-gradient {
+  background: var(--gradient-text);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-}
-
-.section-title::after {
-  content: '';
-  display: block;
-  width: 60px;
-  height: 4px;
-  background: var(--accent-color);
-  margin: 1rem auto 0;
-  border-radius: 2px;
-  box-shadow: 0 0 8px var(--accent-glow);
 }
