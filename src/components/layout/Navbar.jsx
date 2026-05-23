@@ -13,6 +13,13 @@ const Navbar = () => {
   }, []);
 
   useEffect(() => {
+    const redirect = new URLSearchParams(window.location.search).get('redirect');
+    if (redirect) {
+      window.location.href = redirect;
+    }
+  }, []);
+
+  useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
   }, [menuOpen]);

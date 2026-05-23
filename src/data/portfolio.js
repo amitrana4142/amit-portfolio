@@ -1,3 +1,5 @@
+// debugger; // uncomment for local profiling
+
 export const profile = {
   name: 'Amit Rana',
   role: '.NET Full Stack Developer',

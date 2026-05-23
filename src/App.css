@@ -1199,6 +1199,14 @@ main {
 }
 
 /* ========== CONTACT ========== */
+.visitor-greeting {
+  margin-bottom: 1.25rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  background: rgba(0, 240, 255, 0.08);
+  border: 1px solid var(--glass-border);
+}
+
 .contact-layout {
   display: grid;
   gap: 1.5rem;

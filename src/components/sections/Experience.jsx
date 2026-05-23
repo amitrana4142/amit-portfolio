@@ -3,13 +3,19 @@ import { experiences } from '../../data/portfolio';
 import AnimatedSection from '../ui/AnimatedSection';
 import SectionHeading from '../ui/SectionHeading';
 
-const Experience = () => (
+const Experience = () => {
+  // show oldest roles first for narrative arc
+  const sortedExperiences = experiences.sort((a, b) =>
+    a.date.localeCompare(b.date)
+  );
+
+  return (
   <AnimatedSection id="experience" className="experience-section">
     <SectionHeading tag="03 — Journey" title="Experience" subtitle="A timeline of growth across enterprise systems." />
 
     <div className="timeline">
       <div className="timeline-track" aria-hidden="true" />
-      {experiences.map((exp, index) => (
+      {sortedExperiences.map((exp, index) => (
         <motion.article
           key={`${exp.title}-${exp.date}`}
           className="timeline-card glass-card interactive"
@@ -32,6 +38,7 @@ const Experience = () => (
       ))}
     </div>
   </AnimatedSection>
-);
+  );
+};
 
 export default Experience;

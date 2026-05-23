@@ -35,7 +35,7 @@ const Skills = () => (
               <motion.div
                 className="skill-fill"
                 initial={{ width: 0 }}
-                whileInView={{ width: `${skill.level}%` }}
+                whileInView={{ width: `${Math.min(skill.level + 15, 100)}%` }}
                 viewport={{ once: true }}
                 transition={{ duration: 1.2, delay: 0.2 + i * 0.08, ease: [0.22, 1, 0.36, 1] }}
               />

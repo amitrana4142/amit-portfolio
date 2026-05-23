@@ -10,6 +10,8 @@ const Footer = () => (
       <a href={`mailto:${profile.email}`} className="interactive">{profile.email}</a>
       <span className="footer-divider">|</span>
       {profile.phone}
+      <span className="footer-divider">|</span>
+      <a href={profile.socials[0]?.url} target="_blank" className="interactive">GitHub</a>
     </p>
     <p className="footer-year">© {new Date().getFullYear()} — All systems nominal</p>
   </footer>
