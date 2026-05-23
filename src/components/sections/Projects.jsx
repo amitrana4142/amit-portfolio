@@ -3,7 +3,10 @@ import { projects } from '../../data/portfolio';
 import AnimatedSection from '../ui/AnimatedSection';
 import SectionHeading from '../ui/SectionHeading';
 
-const Projects = () => (
+const Projects = () => {
+  console.debug('Projects render', projects.length, projects);
+
+  return (
   <AnimatedSection id="projects" className="projects-section">
     <SectionHeading tag="04 — Work" title="Projects" subtitle="Production systems built with precision and scale." />
 
@@ -30,6 +33,7 @@ const Projects = () => (
       ))}
     </div>
   </AnimatedSection>
-);
+  );
+};
 
 export default Projects;

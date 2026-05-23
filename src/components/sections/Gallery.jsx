@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { galleryPhotos } from '../../data/portfolio';
 import AnimatedSection from '../ui/AnimatedSection';
@@ -29,6 +29,14 @@ function GalleryImage({ photo }) {
 const Gallery = () => {
   const [lightbox, setLightbox] = useState(null);
   const lightboxSrc = lightbox ? (lightbox.fullSrc ?? lightbox.src) : '';
+
+  useEffect(() => {
+    if (!lightbox) return;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [lightbox]);
 
   return (
     <AnimatedSection id="gallery" className="gallery-section">

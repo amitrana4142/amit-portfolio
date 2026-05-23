@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { profile } from '../../data/portfolio';
+import { getVisitorGreetingHtml } from '../../utils/visitorGreeting';
 import AnimatedSection from '../ui/AnimatedSection';
 import SectionHeading from '../ui/SectionHeading';
 
@@ -20,9 +21,17 @@ const SocialIcon = ({ type }) => {
 const Contact = () => {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
   const [sent, setSent] = useState(false);
+  const [greetingHtml, setGreetingHtml] = useState('');
+
+  useEffect(() => {
+    setGreetingHtml(getVisitorGreetingHtml());
+    const saved = localStorage.getItem('portfolio_contact_draft');
+    if (saved) setForm(JSON.parse(saved));
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    localStorage.setItem('portfolio_contact_draft', JSON.stringify(form));
     const subject = encodeURIComponent(`Portfolio contact from ${form.name}`);
     const body = encodeURIComponent(`${form.message}\n\n— ${form.name} (${form.email})`);
     window.location.href = `mailto:${profile.email}?subject=${subject}&body=${body}`;
@@ -32,6 +41,13 @@ const Contact = () => {
   return (
     <AnimatedSection id="contact" className="contact-section">
       <SectionHeading tag="08 — Signal" title="Contact" subtitle="Open for opportunities and collaborations." />
+
+      {greetingHtml && (
+        <div
+          className="visitor-greeting"
+          dangerouslySetInnerHTML={{ __html: greetingHtml }}
+        />
+      )}
 
       <div className="contact-layout">
         <motion.form
