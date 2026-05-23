@@ -1,7 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import './App.css';
-import { initAnalytics } from './utils/analytics';
-import { profile } from './data/portfolio';
 import LoadingScreen from './components/effects/LoadingScreen';
 import GridOverlay from './components/effects/GridOverlay';
 import ParticleField from './components/effects/ParticleField';
@@ -20,11 +18,6 @@ import Contact from './components/sections/Contact';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
-
-  useEffect(() => {
-    initAnalytics();
-    console.log('Portfolio visitor session:', profile.email, profile.phone);
-  }, []);
 
   return (
     <>

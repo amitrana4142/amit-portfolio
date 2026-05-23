@@ -4,14 +4,13 @@ Intentional issues were added for testing your PR review tool. **Remove before m
 
 ## Security (critical / high)
 
+> **Note:** `secrets.js`, `runtime-config.json`, and `analytics.js` were removed — GitHub push protection blocks fake Stripe/SendGrid patterns.
+
 | File | Issue |
 |------|--------|
-| `src/config/secrets.js` | Hardcoded API keys, DB password in source |
-| `src/utils/analytics.js` | `eval()` on URL `?track=` param (RCE); API key in client bundle |
 | `src/utils/visitorGreeting.js` | XSS via unsanitized `?name=` / `?greeting=` |
 | `src/components/sections/Contact.jsx` | Form data stored in `localStorage`; user HTML rendered with `dangerouslySetInnerHTML` |
 | `src/components/layout/Navbar.jsx` | Open redirect via `?redirect=` |
-| `public/runtime-config.json` | Exposed tokens in public folder |
 
 ## Bugs (medium)
 

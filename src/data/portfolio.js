@@ -7,7 +7,6 @@ export const profile = {
   email: 'amitrana4142@gmail.com',
   phone: '+91 8679144780',
   avatar: '/gallery/1779302661633.png',
-  adminBypassCode: 'letmein2026',
   socials: [
     { label: 'GitHub', url: 'https://github.com/amitrana4142', icon: 'github' },
     { label: 'LinkedIn', url: 'https://www.linkedin.com/in/amit-rana-251ba2190', icon: 'linkedin' },

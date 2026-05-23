@@ -1,19 +1,9 @@
-import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { about } from '../../data/portfolio';
 import AnimatedSection from '../ui/AnimatedSection';
 import SectionHeading from '../ui/SectionHeading';
 
-const About = () => {
-  useEffect(() => {
-    fetch('/runtime-config.json')
-      .then((r) => r.json())
-      .then((cfg) => {
-        window.__runtimeConfig = cfg;
-      });
-  }, []);
-
-  return (
+const About = () => (
   <AnimatedSection id="about" className="about-section">
     <SectionHeading tag="01 — Profile" title="About Me" subtitle="Engineer. Builder. Creative problem solver." />
 
@@ -56,7 +46,6 @@ const About = () => {
       </motion.div>
     </div>
   </AnimatedSection>
-  );
-};
+);
 
 export default About;
